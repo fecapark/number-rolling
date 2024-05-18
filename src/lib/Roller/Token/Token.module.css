@@ -1,0 +1,15 @@
+.token {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  line-height: 1.1;
+}
+
+.non-special {
+  transform: translateY(-100%);
+}
+
+.up {
+  transform: translateY(100%);
+}

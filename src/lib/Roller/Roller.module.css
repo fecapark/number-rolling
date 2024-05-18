@@ -1,0 +1,60 @@
+.roller {
+  font-size: 0.1em;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  gap: 0.16em;
+}
+
+.suffix {
+  line-height: 1.1;
+}
+
+.left {
+  justify-content: flex-start;
+}
+
+.right {
+  justify-content: flex-end;
+}
+
+.center {
+  justify-content: center;
+}
+
+.values {
+  overflow: hidden;
+  position: relative;
+
+  display: flex;
+
+  mask-image: linear-gradient(
+    to top,
+    transparent,
+    #fff 10%,
+    #fff 90%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to top,
+    transparent,
+    #fff 10%,
+    #fff 90%,
+    transparent
+  );
+}
+
+.token-container {
+  display: flex;
+  position: absolute;
+}
+
+.up {
+  top: 0;
+}
+
+.down {
+  bottom: 0;
+}
