@@ -14,7 +14,7 @@ interface RollerProps {
   staggering?: boolean;
   diff?: boolean;
   rollWay?: "up" | "down";
-  showAfterFontNameLoaded?: string;
+  showAfterFontNameLoaded?: string[];
 }
 
 export default function Roller({
@@ -28,7 +28,7 @@ export default function Roller({
   staggering = false,
   diff = false,
   rollWay = "down",
-  showAfterFontNameLoaded,
+  showAfterFontNameLoaded = [],
 }: RollerProps) {
   const tokens = useRollerTokens(value, rollWay);
 

@@ -15,7 +15,7 @@ interface RollerAnimationProps {
   shiftDuration: number;
   staggering: boolean;
   diff: boolean;
-  showAfterFontNameLoaded?: string;
+  showAfterFontNameLoaded: string[];
   rollWay: "up" | "down";
 }
 

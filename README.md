@@ -41,19 +41,19 @@ import { Roller } from "@fecapark/number-rolling";
 />;
 ```
 
-| prop                    | description                                                                                                                                                                                                                           | type                          | initial value               | required |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- | --------------------------- | -------- |
-| value                   | Number(integer, float) value to display.                                                                                                                                                                                              | `number`                      | value required              | `true`   |
-| suffix                  | Suffix string to display.                                                                                                                                                                                                             | `string`                      | "" (empty string)           | `false`  |
-| suffixPosition          | Determines position of the suffix string.                                                                                                                                                                                             | `front` or `back`             | `back`                      | `false`  |
-| align                   | Text align of animation container width change.                                                                                                                                                                                       | `left` or `center` or `right` | `center`                    | `false`  |
-| fontSize                | Font size of value and suffix.                                                                                                                                                                                                        | `number`                      | 48                          | `false`  |
-| rollDuration            | Duration of value rolling animation.                                                                                                                                                                                                  | `number` (seconds)            | 0.6 (seconds)               | `false`  |
-| shiftDuration           | Duration of width changing animation.                                                                                                                                                                                                 | `number` (seconds)            | 0.45 (seconds)              | `false`  |
-| staggering              | Determines trigger each value's rolling animation as sequence or randomly.                                                                                                                                                            | `boolean`                     | `false` (triggers randomly) | `false`  |
-| diff                    | Determines trigger rolling aniamtion for only changed values.                                                                                                                                                                         | `boolean`                     | `false`                     | `false`  |
-| rollWay                 | Rolling animation's roll direction.                                                                                                                                                                                                   | `up` or `down`                | `down`                      | `false`  |
-| showAfterFontNameLoaded | This component will be show after setted font-face loaded. If you setted `font-family` through any styling to this component, you should set this prop value as your `font-family` value for preventing CLS(Cumulative Layout Shift). | `string`                      | "" (empty string)           | `false`  |
+| prop                    | description                                                                                                                                                                                                                                           | type                          | initial value               | required |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- | --------------------------- | -------- |
+| value                   | Number(integer, float) value to display.                                                                                                                                                                                                              | `number`                      | value required              | `true`   |
+| suffix                  | Suffix string to display.                                                                                                                                                                                                                             | `string`                      | "" (empty string)           | `false`  |
+| suffixPosition          | Determines position of the suffix string.                                                                                                                                                                                                             | `front` or `back`             | `back`                      | `false`  |
+| align                   | Text align of animation container width change.                                                                                                                                                                                                       | `left` or `center` or `right` | `center`                    | `false`  |
+| fontSize                | Font size of value and suffix.                                                                                                                                                                                                                        | `number`                      | 48                          | `false`  |
+| rollDuration            | Duration of value rolling animation.                                                                                                                                                                                                                  | `number` (seconds)            | 0.6 (seconds)               | `false`  |
+| shiftDuration           | Duration of width changing animation.                                                                                                                                                                                                                 | `number` (seconds)            | 0.45 (seconds)              | `false`  |
+| staggering              | Determines trigger each value's rolling animation as sequence or randomly.                                                                                                                                                                            | `boolean`                     | `false` (triggers randomly) | `false`  |
+| diff                    | Determines trigger rolling aniamtion for only changed values.                                                                                                                                                                                         | `boolean`                     | `false`                     | `false`  |
+| rollWay                 | Rolling animation's roll direction.                                                                                                                                                                                                                   | `up` or `down`                | `down`                      | `false`  |
+| showAfterFontNameLoaded | This component will be show after setted font-face loaded. If you setted `font-family` through any styling to this component, you should set this prop values as your `font-family` values for preventing CLS(Cumulative Layout Shift). See examples. | `string[]`                    | [] (empty array)            | `false`  |
 
 <br />
 
@@ -182,12 +182,21 @@ import { Roller } from "@fecapark/number-rolling";
 
 If you setted font-family, recommended to use this property.
 
+In example below, the font `Roboto` and `Noto Sans` are setted. After all setted fonts are loaded, if any one of the fonts is successfully loaded, the components are displayed on the screen.
+
 ```tsx
 import { Roller } from "@fecapark/number-rolling";
 
 <div style={{
-  fontFamily: "Roboto, sans-serif"
+  fontFamily: "Roboto, 'Noto Sans' sans-serif"
 }}>
-  <Roller value={...}  showAfterFontNameLoaded="Roboto" />;
+  <Roller value={...}  showAfterFontNameLoaded={["Roboto", "Noto Sans"]} />;
 </div>
 ```
+
+| Roboto Loaded | Noto Sans Loaded | Result   |
+| ------------- | ---------------- | -------- |
+| `loaded`      | `loaded`         | show     |
+| `failed`      | `failed`         | not show |
+| `loaded`      | `failed`         | show     |
+| `failed`      | `loaded`         | show     |
