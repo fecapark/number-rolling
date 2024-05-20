@@ -1,6 +1,6 @@
 {
   "name": "@fecapark/number-rolling",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "type": "module",
   "exports": {
     ".": {
@@ -11,6 +11,27 @@
   "files": [
     "dist"
   ],
+  "keywords": [
+    "React",
+    "number",
+    "rolling",
+    "animation",
+    "transition"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fecapark/number-rolling"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "fecapark",
+    "email": "fecapark@gmail.com",
+    "url": "https://github.com/fecapark"
+  },
+  "bugs": {
+    "url": "https://github.com/fecapark/number-rolling/issues"
+  },
+  "homepage": "https://github.com/fecapark/number-rolling#readme",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
