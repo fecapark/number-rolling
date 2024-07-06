@@ -1,5 +1,5 @@
 import styles from "./Roller.module.css";
-import { useEffect } from "react";
+import { useEffect, useId } from "react";
 import { useRollerTokens } from "./hooks/useRollerTokens";
 import { useRollerAnimation } from "./hooks/useRollerAnimation";
 
@@ -30,10 +30,12 @@ export default function Roller({
   rollWay = "down",
   showAfterFontNameLoaded = [],
 }: RollerProps) {
-  const tokens = useRollerTokens(value, rollWay);
+  const id = useId();
+  const tokens = useRollerTokens(id, value, rollWay);
 
   useRollerAnimation(
     {
+      id,
       value,
       rollDuration,
       shiftDuration,
@@ -46,13 +48,17 @@ export default function Roller({
   );
 
   useEffect(() => {
-    const token = document.querySelector(".token-roller > .token");
+    const token = document.querySelector(
+      `.token-roller[data-roller-id="${id}"] > .token`
+    );
     if (!token) return;
 
     const { height } = token.getBoundingClientRect();
-    const values = document.querySelector("div.values") as HTMLDivElement;
+    const values = document.querySelector(
+      `div.values[data-roller-id="${id}"]`
+    ) as HTMLDivElement;
     values.style.height = `${height}px`;
-  }, [value, fontSize]);
+  }, [id, value, fontSize]);
 
   return (
     <div
@@ -64,7 +70,7 @@ export default function Roller({
       {suffix != "" && suffixPosition === "front" && (
         <div className={styles.suffix}>{suffix}</div>
       )}
-      <div className={`${styles.values} values`}>
+      <div className={`${styles.values} values`} data-roller-id={id}>
         <div className={`${styles["token-container"]} ${styles[rollWay]}`}>
           {tokens}
         </div>

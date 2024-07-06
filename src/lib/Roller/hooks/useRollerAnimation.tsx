@@ -10,6 +10,7 @@ import {
 import { useFontFaceObserver } from "./useFontFaceObserver";
 
 interface RollerAnimationProps {
+  id: string;
   value: number;
   rollDuration: number;
   shiftDuration: number;
@@ -23,6 +24,7 @@ gsap.registerPlugin(useGSAP);
 
 export function useRollerAnimation(
   {
+    id,
     value,
     rollDuration,
     shiftDuration,
@@ -65,6 +67,7 @@ export function useRollerAnimation(
       const valueLengthChanged = prevTokenAmount.current !== currentTokenAmount;
 
       tokenSlideAnimation(
+        id,
         rollDuration,
         staggering,
         rollWay,
@@ -72,6 +75,7 @@ export function useRollerAnimation(
       );
       if (valueLengthChanged) {
         specialSlideAnimation(
+          id,
           rollDuration,
           currentTokenAmount > prevTokenAmount.current
         );
@@ -97,7 +101,7 @@ export function useRollerAnimation(
     () => {
       if (!isFontLoaded) return;
 
-      valueWidthAnimation(value, shiftDuration);
+      valueWidthAnimation(id, value, shiftDuration);
     },
     {
       dependencies: [value, shiftDuration, isFontLoaded, ...dependencies],
