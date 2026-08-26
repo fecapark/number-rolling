@@ -18,6 +18,7 @@ interface RollerAnimationProps {
   diff: boolean;
   showAfterFontNameLoaded: string[];
   rollWay: "up" | "down";
+  locale?: string;
 }
 
 gsap.registerPlugin(useGSAP);
@@ -32,6 +33,7 @@ export function useRollerAnimation(
     diff,
     rollWay,
     showAfterFontNameLoaded,
+    locale,
   }: RollerAnimationProps,
   dependencies: unknown[] = []
 ) {
@@ -63,7 +65,7 @@ export function useRollerAnimation(
     () => {
       if (!isFontLoaded) return;
 
-      const currentTokenAmount = value.toLocaleString().length;
+      const currentTokenAmount = value.toLocaleString(locale).length;
       const valueLengthChanged = prevTokenAmount.current !== currentTokenAmount;
 
       tokenSlideAnimation(
@@ -101,7 +103,7 @@ export function useRollerAnimation(
     () => {
       if (!isFontLoaded) return;
 
-      valueWidthAnimation(id, value, shiftDuration);
+      valueWidthAnimation(id, value, shiftDuration, locale);
     },
     {
       dependencies: [value, shiftDuration, isFontLoaded, ...dependencies],

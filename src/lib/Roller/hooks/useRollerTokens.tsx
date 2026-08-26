@@ -44,8 +44,9 @@ function makeTokenRoller(
 export function useRollerTokens(
   id: string,
   value: number,
-  rollWay: "up" | "down"
+  rollWay: "up" | "down",
+  locale?: string
 ) {
-  const tokens = value.toLocaleString().split("");
+  const tokens = value.toLocaleString(locale).split("");
   return tokens.map((token, i) => makeTokenRoller(id, token, rollWay, i));
 }

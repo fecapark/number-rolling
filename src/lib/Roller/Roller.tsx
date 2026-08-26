@@ -15,6 +15,7 @@ interface RollerProps {
   diff?: boolean;
   rollWay?: "up" | "down";
   showAfterFontNameLoaded?: string[];
+  locale?: string;
 }
 
 export default function Roller({
@@ -29,9 +30,10 @@ export default function Roller({
   diff = false,
   rollWay = "down",
   showAfterFontNameLoaded = [],
+  locale,
 }: RollerProps) {
   const id = useId();
-  const tokens = useRollerTokens(id, value, rollWay);
+  const tokens = useRollerTokens(id, value, rollWay, locale);
 
   useRollerAnimation(
     {
@@ -43,8 +45,9 @@ export default function Roller({
       rollWay,
       showAfterFontNameLoaded,
       diff,
+      locale,
     },
-    [fontSize]
+    [fontSize, locale]
   );
 
   useEffect(() => {
