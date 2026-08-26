@@ -38,6 +38,7 @@ import { Roller } from "@fecapark/number-rolling";
   diff={false},
   rollWay="down",
   showAfterFontNameLoaded="",
+  locale="en",
 />;
 ```
 

@@ -16,11 +16,11 @@ function getSpecialTokenWidth(id: string) {
   return $specialToken.getBoundingClientRect().width;
 }
 
-function getTargetWidth(id: string, value: number) {
+function getTargetWidth(id: string, value: number, locale?: string) {
   let width = 0;
   const tokenWidth = getTokenWidth(id);
   const specialTokenWidth = getSpecialTokenWidth(id);
-  const valueString = value.toLocaleString();
+  const valueString = value.toLocaleString(locale);
 
   for (let i = 0; i < valueString.length; i++) {
     if (valueString[i] === "," || valueString[i] === ".") {
@@ -99,13 +99,14 @@ export function specialSlideAnimation(
 export function valueWidthAnimation(
   id: string,
   value: number,
-  duration: number
+  duration: number,
+  locale?: string
 ) {
   const ref = document.querySelector(`.values[data-roller-id="${id}"]`);
   if (!ref) return;
 
   gsap.to(ref, {
-    width: getTargetWidth(id, value),
+    width: getTargetWidth(id, value, locale),
     duration: duration,
     delay: 0.1,
     ease: "expo.out",
